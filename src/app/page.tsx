@@ -8,7 +8,7 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col bg-gradient-to-b from-gray-200 px-8 pt-32">
       <h1 className="max-w-7xl border-b-4 border-r-4 border-t-4 border-primary py-8 pr-4 text-4xl font-medium sm:text-6xl md:text-7xl lg:text-8xl">
-        Welcome to our Notion-style Webapp with a WYSIWYG editor.
+        Welcome to Notesgalore
       </h1>
       <div className="mt-8 flex gap-4">
         {!userId ? (
