@@ -8,7 +8,7 @@ import { TipTapEditorProps } from "./props";
 import { PatchDocType } from "@/app/api/documents/[publicId]/route";
 import { useDebouncedCallback } from "use-debounce";
 import { EditorBubbleMenu } from "./bubble-menu";
-import { ImageResizer } from './extensions'
+import { ImageResizer } from './extensions/image-resizer'
 
 export default function Editor({
     document,

@@ -1,4 +1,6 @@
 import "./globals.css";
+import "./styles/index.css";
+import "./styles/prosemirror.css";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/toaster";
