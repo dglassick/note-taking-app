@@ -3,7 +3,7 @@
 import { buttonVariants } from "../ui/button";
 import { DocumentType } from "../sidebar";
 import { cn } from "@/lib/utils";
-import { FileText } from "lucide-react";
+import { LuFileText as FileText } from "react-icons/lu";
 import { usePathname } from "next/navigation";
 import DocumentOperations from "../document-operations";
 import Link from "next/link";

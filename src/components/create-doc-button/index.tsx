@@ -16,7 +16,7 @@ import { Label } from "@/components/ui/label";
 import { toast } from "../ui/use-toast";
 import { nanoid } from "nanoid";
 import { CreateDocType } from "@/app/api/documents/route";
-import { PlusIcon } from "lucide-react";
+import { LuPlus as PlusIcon } from "react-icons/lu";
 
 export default function CreateDocButton() {
     const router = useRouter();

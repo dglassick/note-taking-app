@@ -10,17 +10,17 @@ import { Editor, Range, Extension } from "@tiptap/core";
 import Suggestion from "@tiptap/suggestion";
 import { ReactRenderer } from "@tiptap/react";
 import tippy from "tippy.js";
-import {
-    Bold,
-    Heading1,
-    Heading2,
-    Heading3,
-    Italic,
-    List,
-    ListOrdered,
-    MessageSquarePlus,
-    Text,
-} from "lucide-react";
+import { LuBold as Bold,
+    LuHeading1 as Heading1,
+    LuHeading2 as Heading2,
+    LuHeading3 as Heading3,
+    LuItalic as Italic,
+    LuList as List,
+    LuListOrdered as ListOrdered,
+    LuMessageSquarePlus as MessageSquarePlus,
+    LuText as Text
+} from "react-icons/lu";
+
 
 interface CommandItemProps {
     title: string;

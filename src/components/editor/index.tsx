@@ -3,10 +3,12 @@
 import { useEditor, EditorContent } from "@tiptap/react";
 import { useState, useEffect, useTransition } from "react";
 import { useRouter } from "next/navigation";
-import { TipTapEditorExtensions } from "./extensions";
+import { defaultExtensions  } from "./extensions";
 import { TipTapEditorProps } from "./props";
 import { PatchDocType } from "@/app/api/documents/[publicId]/route";
 import { useDebouncedCallback } from "use-debounce";
+import { EditorBubbleMenu } from "./bubble-menu";
+import { ImageResizer } from './extensions'
 
 export default function Editor({
     document,
@@ -57,7 +59,7 @@ export default function Editor({
     }, 1000);
 
     const editor = useEditor({
-        extensions: TipTapEditorExtensions,
+        extensions: defaultExtensions,
         editorProps: TipTapEditorProps,
         onUpdate: (e) => {
             setSaveStatus("Saving...");
@@ -88,6 +90,8 @@ export default function Editor({
                     {saveStatus}
                 </div>
                 <h1 className="mb-8 text-6xl font-bold">{document.title}</h1>
+                {editor && <EditorBubbleMenu editor={editor} />}
+                {editor?.isActive("image") && <ImageResizer editor={editor} />}
                 <EditorContent editor={editor} />
             </div>
         </div>

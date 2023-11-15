@@ -3,7 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { MoreVertical, Trash, Loader2 } from "lucide-react";
+import { LuMoreVertical as MoreVertical, LuTrash as Trash, LuLoader2 as Loader2 } from "react-icons/lu";
 import { buttonVariants } from "../ui/button";
 import {
     DropdownMenu,
