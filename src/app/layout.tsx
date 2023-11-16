@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/toaster";
 import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { Providers } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 export const metadata = {
@@ -32,7 +33,9 @@ export default function RootLayout({
 						</SignedIn>
 						<SignedOut>{/* Signed out users get sign in button */}</SignedOut>
 					</nav>
+					<Providers>
 					{children}
+					</Providers>
 					<Toaster />
 				</body>
 			</html>

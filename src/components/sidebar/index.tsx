@@ -4,6 +4,7 @@ import { prisma } from "@/lib/prisma";
 import { auth } from "@clerk/nextjs";
 import { redirect } from "next/navigation";
 import { ScrollArea } from "../ui/scroll-area";
+import DarkModeButton from "../ui/DarkMode";
 
 export type DocumentType = {
     publicId: string;
@@ -34,6 +35,7 @@ export default async function Sidebar() {
     return (
         <aside className="fixed left-0 top-0 z-30 flex w-72 flex-col bg-gray-200">
             <ScrollArea className="flex h-screen w-full flex-col items-start justify-start">
+                <DarkModeButton />
                 <CreateDocButton />
                 {documents.map((document, index) => (
                     <DocumentCard key={index} document={document} />
