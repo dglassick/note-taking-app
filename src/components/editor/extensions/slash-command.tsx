@@ -190,20 +190,12 @@ const getSuggestionItems = ({ query }: { query: string }) => {
             searchTerms: ["photo", "picture", "media"],
             icon: <LuImage size={18} />,
             command: ({ editor, range }: CommandProps) => {
-              editor.chain().focus().deleteRange(range).run();
-              // upload image
-              const input = document.createElement("input");
-              input.type = "file";
-              input.accept = "image/*";
-              input.onchange = async () => {
-                if (input.files?.length) {
-                  const file = input.files[0];
-                  const pos = editor.view.state.selection.from;
-                  startImageUpload(file, editor.view, pos);
-                }
-              };
-              input.click();
-            },
+				const url = window.prompt('URL')
+
+				if (url) {
+					editor.chain().focus().deleteRange(range).setImage({ src: url }).run();
+				}
+			}
           },
     ].filter((item) => {
         if (typeof query === "string" && query.length > 0) {

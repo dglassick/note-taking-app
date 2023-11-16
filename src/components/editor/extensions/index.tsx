@@ -92,16 +92,7 @@ export const defaultExtensions = [
         "text-stone-400 underline underline-offset-[3px] hover:text-stone-600 transition-colors cursor-pointer",
     },
   }),
-  TiptapImage.extend({
-    addProseMirrorPlugins() {
-      return [UploadImagesPlugin()];
-    },
-  }).configure({
-    allowBase64: true,
-    HTMLAttributes: {
-      class: "rounded-lg border border-stone-200",
-    },
-  }),
+  TiptapImage,
   UpdatedImage.configure({
     HTMLAttributes: {
       class: "rounded-lg border border-stone-200",
