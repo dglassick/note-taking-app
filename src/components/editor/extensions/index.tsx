@@ -12,7 +12,6 @@ import { Markdown } from 'tiptap-markdown';
 import Highlight from "@tiptap/extension-highlight";
 import SlashCommand from "./slash-command";
 import { InputRule } from "@tiptap/core";
-import UploadImagesPlugin from "../plugins/upload-images";
 import UpdatedImage from "./updated-image";
 import CustomKeymap from "./custom-keymap";
 import DragAndDrop from "./drag-and-drop";

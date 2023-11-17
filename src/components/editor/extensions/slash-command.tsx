@@ -10,7 +10,8 @@ import { Editor, Range, Extension } from "@tiptap/core";
 import Suggestion from "@tiptap/suggestion";
 import { ReactRenderer } from "@tiptap/react";
 import tippy from "tippy.js";
-import { LuBold as Bold,
+import {
+    LuBold as Bold,
     LuHeading1 as Heading1,
     LuHeading2 as Heading2,
     LuHeading3 as Heading3,
@@ -24,8 +25,7 @@ import { LuBold as Bold,
     LuMessageSquarePlus as MessageSquarePlus,
     LuText as Text
 } from "react-icons/lu";
-import { startImageUpload } from "../plugins/upload-images";
-
+import { toast } from "sonner";
 
 interface CommandItemProps {
     title: string;
@@ -70,140 +70,145 @@ const Command = Extension.create({
 
 const getSuggestionItems = ({ query }: { query: string }) => {
     return [
+        //   {
+        //     title: "Send Feedback",
+        //     description: "Let us know how we can improve.",
+        //     icon: <MessageSquarePlus size={18} />,
+        //     command: ({ editor, range }: CommandProps) => {
+        //       editor.chain().focus().deleteRange(range).run();
+        //       window.open("/feedback", "_blank");
+        //     },
+        //   },
         {
-            title: "Send Feedback",
-            description: "Let us know how we can improve.",
-            icon: <MessageSquarePlus size={18} />,
-            command: ({ editor, range }: CommandProps) => {
-              editor.chain().focus().deleteRange(range).run();
-              window.open("/feedback", "_blank");
-            },
-          },
-          {
             title: "Text",
             description: "Just start typing with plain text.",
             searchTerms: ["p", "paragraph"],
             icon: <Text size={18} />,
             command: ({ editor, range }: CommandProps) => {
-              editor
-                .chain()
-                .focus()
-                .deleteRange(range)
-                .toggleNode("paragraph", "paragraph")
-                .run();
+                editor
+                    .chain()
+                    .focus()
+                    .deleteRange(range)
+                    .toggleNode("paragraph", "paragraph")
+                    .run();
             },
-          },
-          {
+        },
+        {
             title: "To-do List",
             description: "Track tasks with a to-do list.",
             searchTerms: ["todo", "task", "list", "check", "checkbox"],
             icon: <LuCheckSquare size={18} />,
             command: ({ editor, range }: CommandProps) => {
-              editor.chain().focus().deleteRange(range).toggleTaskList().run();
+                editor.chain().focus().deleteRange(range).toggleTaskList().run();
             },
-          },
-          {
+        },
+        {
             title: "Heading 1",
             description: "Big section heading.",
             searchTerms: ["title", "big", "large"],
             icon: <Heading1 size={18} />,
             command: ({ editor, range }: CommandProps) => {
-              editor
-                .chain()
-                .focus()
-                .deleteRange(range)
-                .setNode("heading", { level: 1 })
-                .run();
+                editor
+                    .chain()
+                    .focus()
+                    .deleteRange(range)
+                    .setNode("heading", { level: 1 })
+                    .run();
             },
-          },
-          {
+        },
+        {
             title: "Heading 2",
             description: "Medium section heading.",
             searchTerms: ["subtitle", "medium"],
             icon: <Heading2 size={18} />,
             command: ({ editor, range }: CommandProps) => {
-              editor
-                .chain()
-                .focus()
-                .deleteRange(range)
-                .setNode("heading", { level: 2 })
-                .run();
+                editor
+                    .chain()
+                    .focus()
+                    .deleteRange(range)
+                    .setNode("heading", { level: 2 })
+                    .run();
             },
-          },
-          {
+        },
+        {
             title: "Heading 3",
             description: "Small section heading.",
             searchTerms: ["subtitle", "small"],
             icon: <Heading3 size={18} />,
             command: ({ editor, range }: CommandProps) => {
-              editor
-                .chain()
-                .focus()
-                .deleteRange(range)
-                .setNode("heading", { level: 3 })
-                .run();
+                editor
+                    .chain()
+                    .focus()
+                    .deleteRange(range)
+                    .setNode("heading", { level: 3 })
+                    .run();
             },
-          },
-          {
+        },
+        {
             title: "Bullet List",
             description: "Create a simple bullet list.",
             searchTerms: ["unordered", "point"],
             icon: <List size={18} />,
             command: ({ editor, range }: CommandProps) => {
-              editor.chain().focus().deleteRange(range).toggleBulletList().run();
+                editor.chain().focus().deleteRange(range).toggleBulletList().run();
             },
-          },
-          {
+        },
+        {
             title: "Numbered List",
             description: "Create a list with numbering.",
             searchTerms: ["ordered"],
             icon: <ListOrdered size={18} />,
             command: ({ editor, range }: CommandProps) => {
-              editor.chain().focus().deleteRange(range).toggleOrderedList().run();
+                editor.chain().focus().deleteRange(range).toggleOrderedList().run();
             },
-          },
-          {
+        },
+        {
             title: "Quote",
             description: "Capture a quote.",
             searchTerms: ["blockquote"],
             icon: <LuTextQuote size={18} />,
             command: ({ editor, range }: CommandProps) =>
-              editor
-                .chain()
-                .focus()
-                .deleteRange(range)
-                .toggleNode("paragraph", "paragraph")
-                .toggleBlockquote()
-                .run(),
-          },
-          {
+                editor
+                    .chain()
+                    .focus()
+                    .deleteRange(range)
+                    .toggleNode("paragraph", "paragraph")
+                    .toggleBlockquote()
+                    .run(),
+        },
+        {
             title: "Code",
             description: "Capture a code snippet.",
             searchTerms: ["codeblock"],
             icon: <LuCode size={18} />,
             command: ({ editor, range }: CommandProps) =>
-              editor.chain().focus().deleteRange(range).toggleCodeBlock().run(),
-          },
-          {
+                editor.chain().focus().deleteRange(range).toggleCodeBlock().run(),
+        },
+        {
             title: "Image",
             description: "Upload an image from your computer.",
             searchTerms: ["photo", "picture", "media"],
             icon: <LuImage size={18} />,
             command: ({ editor, range }: CommandProps) => {
-				const url = window.prompt('URL')
+                const url = window.prompt('URL')
 
-				if (url) {
-					editor.chain().focus().deleteRange(range).setImage({ src: url }).run();
-				}
-			}
-          },
+                if (url) {
+                    editor.chain().focus().deleteRange(range).setImage({ src: url }).run();
+                }
+            }
+        },
     ].filter((item) => {
         if (typeof query === "string" && query.length > 0) {
-            return item.title.toLowerCase().includes(query.toLowerCase());
+            const search = query.toLowerCase();
+            return (
+                item.title.toLowerCase().includes(search) ||
+                item.description.toLowerCase().includes(search) ||
+                (item.searchTerms &&
+                    item.searchTerms.some((term: string) => term.includes(search)))
+            );
         }
         return true;
     });
-    // .slice(0, 10);
 };
 
 export const updateScrollView = (container: HTMLElement, item: HTMLElement) => {
@@ -223,13 +228,15 @@ export const updateScrollView = (container: HTMLElement, item: HTMLElement) => {
 const CommandList = ({
     items,
     command,
+    editor,
+    range,
 }: {
     items: CommandItemProps[];
     command: any;
+    editor: any;
+    range: any;
 }) => {
     const [selectedIndex, setSelectedIndex] = useState(0);
-    const commandListContainer = useRef<HTMLDivElement>(null);
-    const selectedButtonRef = useRef<HTMLButtonElement>(null);
 
     const selectItem = useCallback(
         (index: number) => {
@@ -271,34 +278,28 @@ const CommandList = ({
         setSelectedIndex(0);
     }, [items]);
 
-    useEffect(() => {
-        const container = commandListContainer.current;
-        const item = selectedButtonRef.current;
+    const commandListContainer = useRef<HTMLDivElement>(null);
 
-        if (item && container) {
-            container.scrollTop = item.offsetTop - container.offsetTop;
+    useLayoutEffect(() => {
+        const container = commandListContainer?.current;
 
-            item.focus();
-        }
+        const item = container?.children[selectedIndex] as HTMLElement;
 
-        if (selectedIndex === 0 && items.length > 0) {
-            setTimeout(() => {
-                selectedButtonRef.current?.focus();
-            }, 10);
-        }
-    }, [selectedIndex, items]);
+        if (item && container) updateScrollView(container, item);
+    }, [selectedIndex]);
 
     return items.length > 0 ? (
         <div
+            id="slash-command"
             ref={commandListContainer}
-            className="z-50 h-auto max-h-[330px] w-72 overflow-y-auto scroll-smooth rounded-md border border-gray-200 bg-white px-1 py-2 shadow-md transition-all"
+            className="z-50 h-auto max-h-[330px] w-72 overflow-y-auto rounded-md border border-stone-200 bg-white px-1 py-2 shadow-md transition-all"
         >
             {items.map((item: CommandItemProps, index: number) => {
-                const isSelected = index === selectedIndex;
                 return (
                     <button
-                        ref={isSelected ? selectedButtonRef : null}
-                        className={`flex w-full items-center space-x-2 rounded-md px-2 py-1 text-left text-sm text-gray-900 hover:bg-gray-100 ${isSelected ? "bg-gray-100 text-gray-900" : ""
+                        className={`flex w-full items-center space-x-2 rounded-md px-2 py-1 text-left text-sm text-stone-900 hover:bg-stone-100 ${index === selectedIndex
+                                ? "bg-stone-100 text-stone-900"
+                                : ""
                             }`}
                         key={index}
                         onClick={() => selectItem(index)}
