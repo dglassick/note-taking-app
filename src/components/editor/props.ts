@@ -25,9 +25,9 @@ export const TipTapEditorProps: EditorProps = {
           event.preventDefault();
           const file = event.clipboardData.files[0];
           const pos = view.state.selection.from;
-    
-          startImageUpload(file, view, pos);
-          return true;
+		  window.alert('Please use the / commands to upload an image url')
+        //   startImageUpload(file, view, pos);
+        //   return true;
         }
         return false;
       },
@@ -44,9 +44,10 @@ export const TipTapEditorProps: EditorProps = {
             left: event.clientX,
             top: event.clientY,
           });
-          // here we deduct 1 from the pos or else the image will create an extra node
-          startImageUpload(file, view, coordinates?.pos || 0 - 1);
-          return true;
+        //   // here we deduct 1 from the pos or else the image will create an extra node
+        //   startImageUpload(file, view, coordinates?.pos || 0 - 1);
+        //   return true;
+			window.alert('Please use the / commands to upload an image url')
         }
         return false;
       },
