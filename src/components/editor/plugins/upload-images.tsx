@@ -91,8 +91,6 @@ export function startImageUpload(file: File, view: EditorView, pos: number) {
   handleImageUpload(file).then((src) => {
     const { schema } = view.state;
 
-    console.log(view.state, id)
-
     let pos = findPlaceholder(view.state, id);
     // If the content around the placeholder has been deleted, drop
     // the image

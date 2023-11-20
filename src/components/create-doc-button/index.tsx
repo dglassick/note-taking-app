@@ -83,7 +83,7 @@ export default function CreateDocButton() {
             <Button
                 onClick={() => setShowCreateDialog(true)}
                 variant="outline"
-                className="h-8 w-full justify-start rounded-none"
+                className="h-8 w-full justify-start rounded-none dark:bg-slate-800 dark:hover:bg-slate-600"
             >
                 <PlusIcon className="mr-2 h-4 w-4" />
                 New Document

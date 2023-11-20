@@ -36,6 +36,8 @@ export default async function DocumentPage(props: DocumentProps) {
         notFound();
     }
 
+    console.log(document.document)
+
     return (
         <Editor
             publicId={props.params.publicId}

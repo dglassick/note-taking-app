@@ -15,8 +15,8 @@ export default function DocumentCard({ document }: { document: DocumentType }) {
         <div
             className={cn(
                 buttonVariants({ variant: "outline" }),
-                "h-8 w-full justify-between  rounded-none",
-                pathname === `/app/${document.publicId}` && "bg-secondary"
+                "h-8 w-full justify-between  rounded-none dark:bg-slate-800 dark:hover:bg-slate-600",
+                pathname === `/app/${document.publicId}` && "bg-secondary dark:bg-slate-600"
             )}
         >
             <Link

@@ -33,8 +33,8 @@ export default async function Sidebar() {
 
     const documents = await getDocuments(userId);
     return (
-        <aside className="fixed left-0 top-0 z-30 flex w-72 flex-col bg-gray-200">
-            <ScrollArea className="flex h-screen w-full flex-col items-start justify-start">
+        <aside className="fixed left-0 top-0 z-30 flex w-72 flex-col dark:bg-slate-600">
+            <ScrollArea className="flex h-screen w-full flex-col items-start justify-start dark:bg-slate-600">
                 <DarkModeButton />
                 <CreateDocButton />
                 {documents.map((document, index) => (

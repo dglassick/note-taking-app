@@ -76,6 +76,8 @@ export default function Editor({
         }
     }, [editor, document, hydrated]);
 
+    console.log(editor);
+
     return (
         <div
             onClick={() => {
